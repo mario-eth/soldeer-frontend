@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import toml from "@iarna/toml";
-import dataTomlPath from "./all_dependencies.toml"; // Import the path to the TOML file
+import dataTomlPath from "./all_dependencies.toml";
+import copy from "copy-to-clipboard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
 function TomlReader() {
@@ -65,6 +68,18 @@ function TomlReader() {
     setFilteredData(newFilteredData);
   }, [searchQuery, data]);
 
+  const [showAlert, setShowAlert] = useState(false);
+
+  // Function to handle the copy action
+  const handleCopy = (dependencyName) => {
+    copy(`soldeer install ${dependencyName}`);
+    // You can also add some feedback here, e.g., displaying a tooltip or changing the icon
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  };
+
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center text-white p-8">
       {/* Helmet for document head */}
@@ -115,7 +130,7 @@ function TomlReader() {
             soldeer install @openzeppelin-contracts~5.0.0
           </div>
           <div className="mt-2">
-            More details {" "}
+            More details{" "}
             <a
               href="https://github.com/mario-eth/soldeer#how-to-install-it"
               target="_blank"
@@ -126,7 +141,9 @@ function TomlReader() {
             </a>
             .
           </div>
-          <p>Built with Rust. Current version: <span className="font-bold">0.1.5</span></p>
+          <p>
+            Built with Rust. Current version: <span className="font-bold">0.1.5</span>
+          </p>
           <p>
             Present on{" "}
             <a
@@ -158,7 +175,8 @@ function TomlReader() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-
+      {/* Alert */}
+      {showAlert && <div className="fixed top-4 right-4 bg-green-500 p-2 rounded" style={{ backgroundColor: '#1f2937' }}>Copied to clipboard!</div>}
       {/* Table */}
       <table
         className="min-w-full border-collapse border border-slate-500 rounded"
@@ -177,7 +195,16 @@ function TomlReader() {
         <tbody>
           {Object.entries(filteredData).map(([key, value]) => (
             <tr key={key}>
-              <td className="border border-slate-700 px-6 py-4">{key}</td>
+              <td className="border border-slate-700 px-6 py-4">
+                <div className="group ml-2 relative">
+                  <button onClick={() => handleCopy(key)}>
+                    <FontAwesomeIcon icon={faClipboard} /> {key}
+                  </button>
+                  <span className="absolute left-0 bottom-full mb-2 px-2 py-1 text-xs bg-gray-800 rounded invisible group-hover:visible">
+                    Copy to clipboard
+                  </span>
+                </div>
+              </td>
               <td className="border border-slate-700 px-6 py-4">
                 <a href={value} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400">
                   {value}
