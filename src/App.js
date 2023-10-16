@@ -167,10 +167,10 @@ function TomlReader() {
         <thead>
           <tr>
             <th className="border border-slate-600 px-6 py-4" style={{ backgroundColor: "#334156" }}>
-              Dependency Name~Dependency Version (used in soldeer install)
+              Dependency
             </th>
             <th className="border border-slate-600 px-6 py-4" style={{ backgroundColor: "#334156" }}>
-              Dependency Zip Link
+              Zip Link
             </th>
           </tr>
         </thead>
