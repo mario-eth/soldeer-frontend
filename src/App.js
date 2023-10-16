@@ -68,7 +68,6 @@ function TomlReader() {
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center text-white p-8">
       {/* Helmet for document head */}
-      
 
       {/* Logo Image */}
       <div className="mb-2">
@@ -80,20 +79,43 @@ function TomlReader() {
       {/* Code Block */}
       <div className="w-4/5 md:w-3/4 lg:w-1/2 mb-4 bg-gray-800 p-4 rounded">
         <code className="text-white">
+          <p>
+            To install Soldeer you must install cargo first{" "}
+            <a
+              href="https://doc.rust-lang.org/cargo/getting-started/installation.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-400"
+            >
+              read here
+            </a>
+            .
+          </p>
+          <div className="px-2 py-1 rounded mt-2"></div>
+          <div className="py-1 rounded mt-2">
+            Then you can just{" "}
+            <div className="bg-gray-700 px-2 py-1 rounded mt-2">
+              {" "}
+              {/* Darker background for this part */}
+              cargo install soldeer
+            </div>
+          </div>
+          <div className="px-2 py-1 rounded mt-2"></div>
           To install a dependency use{" "}
           <div className="bg-gray-700 px-2 py-1 rounded mt-2">
             {" "}
             {/* Darker background for this part */}
             soldeer install &lt;dependency_name&gt;~&lt;dependency_version&gt;
           </div>
-          example
+          <div className="px-2 py-1 rounded mt-2"></div>
+          Example
           <div className="bg-gray-700 px-2 py-1 rounded mt-2">
             {" "}
             {/* Darker background for this part */}
             soldeer install @openzeppelin-contracts~5.0.0
           </div>
           <div className="mt-2">
-            To install soldeer,{" "}
+            More details {" "}
             <a
               href="https://github.com/mario-eth/soldeer#how-to-install-it"
               target="_blank"
@@ -104,6 +126,25 @@ function TomlReader() {
             </a>
             .
           </div>
+          <p>Built with Rust. Current version: <span className="font-bold">0.1.5</span></p>
+          <p>
+            Present on{" "}
+            <a
+              href="https://crates.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-400"
+            >
+              <a
+                href="https://crates.io/crates/soldeer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-400"
+              >
+                crates.io
+              </a>
+            </a>
+          </p>
         </code>
       </div>
 
